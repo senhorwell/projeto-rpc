@@ -39,6 +39,22 @@ public class Server {
 		DatagramPacket sendPacket = new DatagramPacket(message,message.length,address,port);
 		rcp.receive(receivePacket);
 		rcp.send(sendPacket);
+		String received = new String(receivePacket.getData(), 0, receivePacket.getLength());
+		
+		switch(received){
+			case "1":
+				break;
+			case "2":
+				break;
+			case "3":
+				break;
+			case "4":
+				break;
+			case "5":
+				break;
+			default:
+				break;
+		}
 	}
 
 	public static String leitor() throws IOException {
@@ -52,11 +68,41 @@ public class Server {
 		buffRead.close();
 		return linha;
 	}
-
 	public static void escritor(String linha) throws IOException {
 		BufferedWriter buffWrite = new BufferedWriter(new FileWriter("..\\archive.txt"));
 		buffWrite.append(linha + "\n");
 		buffWrite.close();
+	}
+	public static void editor(String textoAntigo, String texto) throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader("..\\archive.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("..\\archive_temp.txt"));
+
+		String currentLine;
+
+		while((currentLine = reader.readLine()) != null) {
+			String trimmedLine = currentLine.trim();
+			if(trimmedLine.equals(textoAntigo)){
+				writer.write(texto + System.getProperty("line.separator"));
+			}else{
+				writer.write(currentLine + System.getProperty("line.separator"));
+			}
+		}
+		writer.close(); 
+		reader.close();
+	}
+	public static void exclusor(String linha) throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader("..\\archive.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("..\\archive_temp.txt"));
+
+		String currentLine;
+
+		while((currentLine = reader.readLine()) != null) {
+			String trimmedLine = currentLine.trim();
+			if(trimmedLine.equals(linha)) continue;
+			writer.write(currentLine + System.getProperty("line.separator"));
+		}
+		writer.close(); 
+		reader.close();
 	}
 
 }

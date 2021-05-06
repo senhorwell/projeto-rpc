@@ -25,20 +25,42 @@ public class Client {
 	
 	private static void message(DatagramSocket rcp) throws IOException {
 		InetAddress address = InetAddress.getByName("127.0.0.1");
+		Integer iMessage = 0;
 		String sMessage;
 		Scanner scann = new Scanner(System.in);
 		byte[] message = new byte[1024];
 		byte[] receiveMessage = new byte[1024];
-		// 1 - Excluir
-		// 2 - Adicionar
-		// 3 - Editar
-		// 4 - Ler
-		System.out.print("Insira a opção:");
-		sMessage = scann.next();
-		message = sMessage.getBytes();
-		DatagramPacket receivePacket = new DatagramPacket(receiveMessage,receiveMessage.length);
-		DatagramPacket sendPacket = new DatagramPacket(message,message.length,address,port);
-		rcp.receive(receivePacket);
-		rcp.send(sendPacket);
+
+		while(true){ 
+			System.out.println("1 - Ler");
+			System.out.println("2 - Adicionar");
+			System.out.println("3 - Editar");
+			System.out.println("4 - Excluir");
+			System.out.println("5 - Sair");
+			System.out.print("Insira a opção: ");
+			iMessage = scann.nextInt();
+			if(iMessage == 5) break;
+			switch(iMessage){
+				case 2:
+					System.out.print("Insira o texto que quer adicionar: ");
+					sMessage = scann.next();
+					break;
+				case 3:
+					System.out.print("Qual linha quer editar: ");
+					sMessage = scann.next();
+					break;
+				case 4:
+					System.out.print("Qual linha quer excluir: ");
+					sMessage = scann.next();
+					break;
+				default:
+					break;
+			}
+			message = iMessage.getBytes();
+			DatagramPacket receivePacket = new DatagramPacket(receiveMessage,receiveMessage.length);
+			DatagramPacket sendPacket = new DatagramPacket(message,message.length,address,port);
+			rcp.receive(receivePacket);
+			rcp.send(sendPacket);
+		}
 	}
 }
