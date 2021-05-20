@@ -14,5 +14,5 @@ Implementar uma agenda eletrônica, com as seguintes funcionalidades: insere, co
 3. g++ server.cpp agenda_svc.c agenda_xdr.c -o server -lnsl
 
 ### Para rodar o projeto
-1 - ./server
-2 - ./client
+1. ./server
+2. ./client
