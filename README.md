@@ -9,9 +9,9 @@ Implementar uma agenda eletrônica, com as seguintes funcionalidades: insere, co
 - Sua implementação deve apresentar mecanismos (propostas de soluções) para tratar as falhas apresentadas acima.
 
 ### Para compilar o projeto
-1 - rpcgen agenda.x
-2 - g++ client.c agenda_clnt.c agenda_xdr.c -o client -lnsl
-3 - g++ server.cpp agenda_svc.c agenda_xdr.c -o server -lnsl
+1. rpcgen agenda.x
+2. g++ client.c agenda_clnt.c agenda_xdr.c -o client -lnsl
+3. g++ server.cpp agenda_svc.c agenda_xdr.c -o server -lnsl
 
 ### Para rodar o projeto
 1 - ./server
